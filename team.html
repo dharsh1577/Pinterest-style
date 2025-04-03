@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="team.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="#">postud.io</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="home.html">Home</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="individual.html">Individuals</a></li>
+                    <li class="nav-item"><a class="nav-link" href="team.html">Teams</a></li>
+                    <li class="nav-item"><a class="nav-link" href="enterprice.html">Enterprise</a></li>
+                    <li class="nav-item"><a class="nav-link" href="features.html">Features</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Blog</a></li>
+                    <li class="nav-item">
+                        <a class="btn btn-outline-light" href="#">Get Access</a>
+                    </li>
+                </ul>
+                <div class="dot"></div> <!-- Moving Dot -->
+            </div>
+        </div>
+    </nav>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+     // Mobile Toggle Functionality
+     const navbarToggler = document.querySelector('.navbar-toggler');
+     const navbarCollapse = document.querySelector('.navbar-collapse');
+     
+     if (navbarToggler && navbarCollapse) {
+         navbarToggler.addEventListener('click', function() {
+             navbarCollapse.classList.toggle('show');
+         });
+     }
+ 
+     // Dot Navigation Functionality
+     const navLinks = document.querySelectorAll(".nav-link");
+     const dot = document.querySelector(".dot");
+     const navbarNav = document.querySelector(".navbar-nav");
+ 
+     function updateActiveLink() {
+         let currentPage = window.location.pathname.split("/").pop() || 'home.html';
+         let activeLink = null;
+ 
+         navLinks.forEach(link => {
+             const linkHref = link.getAttribute("href");
+             if (linkHref === currentPage || 
+                 (currentPage === '' && linkHref === 'home.html') ||
+                 (linkHref && linkHref.includes(currentPage))) {
+                 link.classList.add("active");
+                 activeLink = link;
+             } else {
+                 link.classList.remove("active");
+             }
+         });
+ 
+         // Move the dot under the active link
+         if (activeLink && window.innerWidth > 992) {
+             const navRect = navbarNav.getBoundingClientRect();
+             const linkRect = activeLink.getBoundingClientRect();
+             
+             // Calculate center position relative to navbar
+             const centerPosition = linkRect.left - navRect.left + (linkRect.width / 2);
+             
+             dot.style.left = `${centerPosition}px`;
+             dot.style.opacity = '1';
+         } else {
+             dot.style.opacity = '0';
+         }
+     }
+ 
+     // Handle click events
+     navLinks.forEach(link => {
+         link.addEventListener('click', function(e) {
+             // Update active class
+             navLinks.forEach(navLink => navLink.classList.remove('active'));
+             this.classList.add('active');
+             
+             // Update dot position
+             updateActiveLink();
+             
+             // Close mobile menu if open
+             if (window.innerWidth <= 992 && navbarCollapse) {
+                 navbarCollapse.classList.remove('show');
+             }
+         });
+     });
+ 
+     // Initial setup
+     updateActiveLink();
+ 
+     // Handle window resize
+     window.addEventListener('resize', function() {
+         updateActiveLink();
+         
+         // Close mobile menu when resizing to desktop
+         if (window.innerWidth > 992 && navbarCollapse) {
+             navbarCollapse.classList.remove('show');
+         }
+     });
+ });
+         </script>
+            
+
+    <header class="hero">
+        <div class="container text-center">
+            <div class="animation-placeholder"></div> <!-- Placeholder for animation -->
+            <h1 class="hero-title">
+                post-production<br>
+                <span class="red-text">studio for collaboration.</span>
+            </h1>
+            <p class="hero-subtitle">build your team and give your content a professional upgrade.</p>
+            <a href="#" class="btn btn-golden btn-lg">Get Access</a>
+        </div>
+    </header>
+
+    <section class="how-it-works">
+        <div class="container">
+            <h1 class="title">how it works for <span class="glow">team</span>.</h1><br><br>
+            <div class="row align-items-center">
+                <!-- Left Side: Steps -->
+                <div class="col-lg-6 left-content">
+                   
+                    <div class="steps">
+                        <div class="step" data-step="1">
+                            <div class="step-header">
+                                <div class="step-number">
+                                    <span class="glowing-circle"></span> 01
+                                </div>
+                                <h3 class="step-title">upload assets</h3><br>
+                            </div>
+                            <p class="step-desc">Browse or Drag & Drop any file types like Video, Audio, Image, Document, Project Folders, Adobe Project files etc.</p>
+                        </div>
+                        <div class="step" data-step="2">
+                            <div class="step-header">
+                                <div class="step-number">
+                                    <span class="glowing-circle"></span> 02
+                                </div>
+                                <h3 class="step-title">invite team</h3><br>
+                            </div>
+                            <p class="step-desc">Create/Manage Tasks on Postudio, Add Collaborators and give them roles & responsibilities. Add Project Brief for your team.</p>
+                        </div>
+                        <div class="step" data-step="3">
+                            <div class="step-header">
+                                <div class="step-number">
+                                    <span class="glowing-circle"></span> 03
+                                </div>
+                                <h3 class="step-title">launch system</h3><br>
+                            </div>
+                            <p class="step-desc">Select the system you want from various configurations, for the required duration, and work on the Postudio cloud environment.</p>
+                        </div>
+
+                        <div class="step" data-step="4">
+                            <div class="step-header">
+                                <div class="step-number">
+                                    <span class="glowing-circle"></span> 04
+                                </div>
+                                <h3 class="step-title">collaborate</h3><br>
+                            </div>
+                            <p class="step-desc">Review tasks, Leave a Comment, Approve/Reject with Audio Comments and Player Annotations, all on Postudio.</p>
+                        </div>
+                                                
+                    </div>
+                </div>
+    
+                <!-- Right Side: Images -->
+                <div class="col-lg-6 right-content">
+                    <div class="image-container">
+                      
+<img src="images/photo4.png" class="active" alt="Step 1 Image">
+<img src="images/photo2.png" alt="Step 2 Image">
+<img src="images/photo3.png" alt="Step 3 Image">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    
+    
+    <script>
+   document.addEventListener("DOMContentLoaded", function () {
+    let images = document.querySelectorAll(".image-container img");
+    let steps = document.querySelectorAll(".step");
+    let currentIndex = 0;
+
+    function changeStep() {
+        let previousIndex = currentIndex;
+        currentIndex = (currentIndex + 1) % steps.length;
+
+        // Remove active class from previous step
+        steps[previousIndex].classList.remove("active");
+
+        // Add active class to current step
+        steps[currentIndex].classList.add("active");
+
+        // Update images
+        images[previousIndex].classList.remove("active");
+        images[currentIndex].classList.add("active");
+    }
+
+    setInterval(changeStep, 3000); // Change every 3 seconds
+});
+
+
+    </script>
+    
+
+    <section class="masterpiece-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h1 class="title">one person <br> <span class="bold">can't fix it all!</span> 
+                         <span class="highlight">creativity banks</span> <br> <span class="highlight">on collaboration.</span> 
+                    </h1>
+                    <p class="subtitle">set up your dream team on the cloud.<br> <span class="browser">create, fix and review together.</span></p>
+                </div>
+                <div class="col-lg-6 text-center">
+                    <img src="https://www.postud.io/images/team/sections/creativity-banks/banner.svg" alt="Speed Meter" class="speed-img">
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section class="masterpiece-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h1 class="title">pick up where <br> <span class="bold">you left off</span> 
+                        <span class="highlight">work seamlessly.
+                    </h1>
+                    <p class="subtitle">gain access to a .<br> <span class="browser">high-performance central storage</span> space on the cloud, that makes post-production life easier.</p>
+                </div>
+                <div class="col-lg-6 text-center">
+                    <img src="https://www.postud.io/images/team/sections/work-seamlessly/banner.svg" alt="Speed Meter" class="speed-img">
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <section class="masterpiece-section1">
+        <div class="container">
+            <div class="row justify-content-center align-items-center">
+                <div class="col-lg-8 text-center">
+                    <h1 class="title1">
+                        greatness is rarely <br>achieved alone.<br>
+                        <span class="highlight1">it's accomplished<br> together.</span>
+                    </h1><br><br>
+                    <p class="subtitle"><span class="browser">share your tasks and responsibilities.</span>  assign, view and check off
+                        your to-do list from one place.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    
+    <section class="masterpiece-section1">
+        <div class="container">
+            <div class="row justify-content-center align-items-center">
+                <div class="col-lg-8 text-center">
+                    <h1 class="title1">
+                        join forces with <br>whoever!
+                        <span class="highlight1">experience<br> creative freedom.</span>
+                    </h1><br><br>
+                    <p class="subtitle1">
+                        editor in   <span class="highlight3">mumbai </span>, colorist in  <span class="highlight3">London </span>, and animator in  <span class="highlight3">Los Angeles </span>? it's alright!
+                        collaborate with anyone from anywhere seamlessly!
+                        
+                        <br>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    
+    <section class="masterpiece-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h1 class="title">you, your crew <br>and <span class="highlight">your content</span> <br> <span class="highlight">are all secure here.</span> 
+                    </h1>
+                    <p class="subtitle"><span class="browser">your data circulates within your team alone.</span> everyone outside the trust circle only gets to preview.</p>
+                </div>
+                <div class="col-lg-6 text-center">
+                    <img src="https://www.postud.io/images/team/sections/content-is-secure/banner.svg" alt="Speed Meter" class="speed-img">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

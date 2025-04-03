@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="features.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg">
+        <div class="container">
+            <a class="navbar-brand" href="#">postud.io</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="home.html">Home</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="individual.html">Individuals</a></li>
+                    <li class="nav-item"><a class="nav-link" href="team.html">Teams</a></li>
+                    <li class="nav-item"><a class="nav-link" href="enterprice.html">Enterprise</a></li>
+                    <li class="nav-item"><a class="nav-link" href="features.html">Features</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Blog</a></li>
+                    <li class="nav-item">
+                        <a class="btn btn-outline-light" href="#">Get Access</a>
+                    </li>
+                </ul>
+                <div class="dot"></div> <!-- Moving Dot -->
+            </div>
+        </div>
+    </nav>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+     // Mobile Toggle Functionality
+     const navbarToggler = document.querySelector('.navbar-toggler');
+     const navbarCollapse = document.querySelector('.navbar-collapse');
+     
+     if (navbarToggler && navbarCollapse) {
+         navbarToggler.addEventListener('click', function() {
+             navbarCollapse.classList.toggle('show');
+         });
+     }
+ 
+     // Dot Navigation Functionality
+     const navLinks = document.querySelectorAll(".nav-link");
+     const dot = document.querySelector(".dot");
+     const navbarNav = document.querySelector(".navbar-nav");
+ 
+     function updateActiveLink() {
+         let currentPage = window.location.pathname.split("/").pop() || 'home.html';
+         let activeLink = null;
+ 
+         navLinks.forEach(link => {
+             const linkHref = link.getAttribute("href");
+             if (linkHref === currentPage || 
+                 (currentPage === '' && linkHref === 'home.html') ||
+                 (linkHref && linkHref.includes(currentPage))) {
+                 link.classList.add("active");
+                 activeLink = link;
+             } else {
+                 link.classList.remove("active");
+             }
+         });
+ 
+         // Move the dot under the active link
+         if (activeLink && window.innerWidth > 992) {
+             const navRect = navbarNav.getBoundingClientRect();
+             const linkRect = activeLink.getBoundingClientRect();
+             
+             // Calculate center position relative to navbar
+             const centerPosition = linkRect.left - navRect.left + (linkRect.width / 2);
+             
+             dot.style.left = `${centerPosition}px`;
+             dot.style.opacity = '1';
+         } else {
+             dot.style.opacity = '0';
+         }
+     }
+ 
+     // Handle click events
+     navLinks.forEach(link => {
+         link.addEventListener('click', function(e) {
+             // Update active class
+             navLinks.forEach(navLink => navLink.classList.remove('active'));
+             this.classList.add('active');
+             
+             // Update dot position
+             updateActiveLink();
+             
+             // Close mobile menu if open
+             if (window.innerWidth <= 992 && navbarCollapse) {
+                 navbarCollapse.classList.remove('show');
+             }
+         });
+     });
+ 
+     // Initial setup
+     updateActiveLink();
+ 
+     // Handle window resize
+     window.addEventListener('resize', function() {
+         updateActiveLink();
+         
+         // Close mobile menu when resizing to desktop
+         if (window.innerWidth > 992 && navbarCollapse) {
+             navbarCollapse.classList.remove('show');
+         }
+     });
+ });
+         </script>
+
+    <header class="hero">
+        <div class="container text-center">
+            <div class="animation-placeholder"></div> <!-- Placeholder for animation -->
+            <h1 class="hero-title">
+                built by the creators<br>
+                <span class="red-text">for the creators.</span>
+            </h1>
+            <p class="hero-subtitle">answers to all your creative needs.</p>
+            <a href="#" class="btn btn-golden btn-lg">Get Access</a>
+        </div>
+    </header>
+    
+    <section class="features-section">
+        <div class="container">
+            <div class="row gy-5">
+                <!-- Row 1 -->
+                <div class="col-md-4 d-flex">
+                    <div class="feature-card w-100">
+                        <img src="images/photo1.png" alt="Feature 1">
+                        <div class="feature-content">
+                            <h3 class="feature-title">On-Demand Environment</h3>
+                            <p class="feature-text">Access cloud applications when needed.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 d-flex">
+                    <div class="feature-card w-100">
+                        <img src="images/photo2.png" alt="Feature 2">
+                        <div class="feature-content">
+                            <h3 class="feature-title">Latest Hardware Configs</h3>
+                            <p class="feature-text">Get high-performance computing for your work.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 d-flex">
+                    <div class="feature-card w-100">
+                        <img src="images/photo3.png" alt="Feature 3">
+                        <div class="feature-content">
+                            <h3 class="feature-title">Centralized Storage</h3>
+                            <p class="feature-text">Collaborate with multiple editors on the same project.</p>
+                        </div>
+                    </div>
+                </div>
+    
+                <!-- Row 2 -->
+                <div class="col-md-4 d-flex">
+                    <div class="feature-card w-100">
+                        <img src="images/photo4.png" alt="Feature 4">
+                        <div class="feature-content">
+                            <h3 class="feature-title">AI-Powered Assistance</h3>
+                            <p class="feature-text">Boost productivity with smart AI tools.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 d-flex">
+                    <div class="feature-card w-100">
+                        <img src="images/photo5.png" alt="Feature 5">
+                        <div class="feature-content">
+                            <h3 class="feature-title">Seamless Integration</h3>
+                            <p class="feature-text">Connect with multiple cloud services easily.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4 d-flex">
+                    <div class="feature-card w-100">
+                        <img src="images/photo6.png" alt="Feature 6">
+                        <div class="feature-content">
+                            <h3 class="feature-title">Security & Privacy</h3>
+                            <p class="feature-text">Your data is always protected and encrypted.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
